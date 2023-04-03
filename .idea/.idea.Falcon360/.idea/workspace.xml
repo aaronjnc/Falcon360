@@ -6,11 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/IMC_Default.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/IMC_Default.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Falcon360.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/Falcon360.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,14 +27,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="C++ Project.Falcon360">
     <configuration name="Falcon360" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -158,6 +159,8 @@
       <updated>1680151987890</updated>
       <workItem from="1680152003920" duration="5000" />
       <workItem from="1680229350222" duration="1970000" />
+      <workItem from="1680552790822" duration="1833000" />
+      <workItem from="1680555614232" duration="98000" />
     </task>
     <servers />
   </component>
