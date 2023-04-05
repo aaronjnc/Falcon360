@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "VizParentPawn.generated.h"
 
+class UTurret;
 struct FInputActionValue;
 class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
@@ -43,6 +44,15 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent* TurretMesh;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	UTurret* TurretComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	USceneComponent* LeftBlaster;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	USceneComponent* RightBlaster;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	class UInputMappingContext* DefaultMappingContext;
