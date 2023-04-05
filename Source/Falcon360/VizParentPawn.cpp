@@ -4,6 +4,7 @@
 #include "VizParentPawn.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Turret.h"
 
 // Sets default values
 AVizParentPawn::AVizParentPawn()
@@ -15,6 +16,14 @@ AVizParentPawn::AVizParentPawn()
 
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Turret Mesh"));
 	TurretMesh->SetupAttachment(RootComponent);
+
+	TurretComponent = CreateDefaultSubobject<UTurret>(TEXT("Turret"));
+
+	LeftBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Left Blaster"));
+	LeftBlaster->SetupAttachment(TurretMesh);
+
+	RightBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Right Blaster"));
+	RightBlaster->SetupAttachment(TurretMesh);
 }
 
 // Called when the game starts or when spawned
@@ -46,8 +55,8 @@ void AVizParentPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &AVizParentPawn::RotatePlayer);
-		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootLeft);
-		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootRight);
+		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootLeft);
+		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootRight);
 	}
 }
 
@@ -58,12 +67,12 @@ void AVizParentPawn::RotatePlayer(const FInputActionValue& Value)
 
 void AVizParentPawn::ShootLeft()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Left"));
+	TurretComponent->Shoot(LeftBlaster->GetComponentLocation(), LeftBlaster->GetComponentRotation());
 }
 
 void AVizParentPawn::ShootRight()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Right"));
+	TurretComponent->Shoot(RightBlaster->GetComponentLocation(), RightBlaster->GetComponentRotation());
 }
 
 
