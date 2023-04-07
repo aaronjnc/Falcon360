@@ -7,13 +7,18 @@
   <component name="ChangeListManager">
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_VizGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_VizGameMode.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard_1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard_1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/3_-_Standard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/3_-_Standard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/7_-_Standard_1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/7_-_Standard_1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Particles/N_Blasters.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Particles/N_Blasters.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Laser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Laser.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +169,9 @@
       <workItem from="1680552790822" duration="1833000" />
       <workItem from="1680555614232" duration="98000" />
       <workItem from="1680645250474" duration="8372000" />
+      <workItem from="1680735063508" duration="855000" />
+      <workItem from="1680735963433" duration="124000" />
+      <workItem from="1680738462518" duration="3596000" />
     </task>
     <servers />
   </component>

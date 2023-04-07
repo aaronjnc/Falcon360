@@ -15,10 +15,10 @@ ALaser::ALaser()
 
 	LaserComponent = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Laser Component"));
 	LaserComponent->SetupAttachment(RootComponent);
-
+	
 	LaserCollider = CreateDefaultSubobject<USphereComponent>(TEXT("Laser Collider"));
 	LaserCollider->SetupAttachment(RootComponent);
-
+	
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovementComponent->InitialSpeed = 3000.0f;
 	ProjectileMovementComponent->MaxSpeed = 3000.0f;
@@ -26,14 +26,19 @@ ALaser::ALaser()
 	ProjectileMovementComponent->bShouldBounce = false;
 	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 
+
 }
 
 // Called when the game starts or when spawned
 void ALaser::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	GameModeBase = Cast<AFalcon360GameModeBase>(GetWorld()->GetAuthGameMode());
+
+	UE_LOG(LogTemp, Warning, TEXT("Set gamemode base"));
+
+	LaserCollider->OnComponentBeginOverlap.AddDynamic(this, &ALaser::OnLaserOverlap);
 
 }
 
@@ -46,11 +51,24 @@ void ALaser::Tick(float DeltaTime)
 
 void ALaser::SetLaserType(FName LaserName)
 {
+	return;
+	if (!GameModeBase)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Failure"));
+		return;
+	}
 	LaserComponent->SetAsset(GameModeBase->GetNiagaraSystem(LaserName));
 	Damage = GameModeBase->GetDamage(LaserName);
 	ProjectileMovementComponent->Velocity =  GameModeBase->GetSpeed(LaserName) * GetActorForwardVector();
 	GetWorld()->GetTimerManager().SetTimer(LifetimeTimerHandle, this, &ALaser::DestroyLaser,
 		GameModeBase->GetTime(LaserName), true);
+}
+
+void ALaser::OnLaserOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	OtherActor->Destroy();
+	Destroy();
 }
 
 void ALaser::DestroyLaser()
