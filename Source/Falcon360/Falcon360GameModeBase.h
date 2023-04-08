@@ -22,6 +22,7 @@ public:
 	float GetDamage(FName BlasterName) const;
 	float GetTime(FName BlasterName) const;
 	float GetSpeed(FName BlasterName) const;
+	TEnumAsByte<ECollisionChannel> GetCollisionChannel(FName BlasterName) const;
 	
 private:
 	UPROPERTY(EditAnywhere, Category = "Blasters")

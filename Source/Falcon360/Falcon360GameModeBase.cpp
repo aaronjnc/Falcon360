@@ -23,3 +23,8 @@ float AFalcon360GameModeBase::GetSpeed(FName BlasterName) const
 {
 	return DataTable->FindRow<FBlasters>(BlasterName, "")->Speed;
 }
+
+TEnumAsByte<ECollisionChannel> AFalcon360GameModeBase::GetCollisionChannel(FName BlasterName) const
+{
+	return DataTable->FindRow<FBlasters>(BlasterName, "")->CollisionChannel;
+}

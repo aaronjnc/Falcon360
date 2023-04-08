@@ -5,6 +5,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Turret.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 AVizParentPawn::AVizParentPawn()
@@ -13,6 +14,9 @@ AVizParentPawn::AVizParentPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
+
+	LaserHitBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Hit Box"));
+	LaserHitBox->SetupAttachment(RootComponent);
 
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Turret Mesh"));
 	TurretMesh->SetupAttachment(RootComponent);

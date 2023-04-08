@@ -10,6 +10,7 @@ class UTurret;
 struct FInputActionValue;
 class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
+class UBoxComponent;
 
 UCLASS()
 class FALCON360_API AVizParentPawn : public APawn
@@ -47,6 +48,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UTurret* TurretComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	UBoxComponent* LaserHitBox;
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	USceneComponent* LeftBlaster;
