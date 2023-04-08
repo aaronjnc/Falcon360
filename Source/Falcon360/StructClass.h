@@ -23,6 +23,9 @@ struct FBlasters : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TEnumAsByte<ECollisionChannel> CollisionChannel;
 	
 };
 

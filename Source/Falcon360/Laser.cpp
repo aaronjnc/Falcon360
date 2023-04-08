@@ -4,6 +4,7 @@
 #include "Laser.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Falcon360GameModeBase.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ALaser::ALaser()
@@ -15,10 +16,10 @@ ALaser::ALaser()
 
 	LaserComponent = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Laser Component"));
 	LaserComponent->SetupAttachment(RootComponent);
-
+	
 	LaserCollider = CreateDefaultSubobject<USphereComponent>(TEXT("Laser Collider"));
 	LaserCollider->SetupAttachment(RootComponent);
-
+	
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	ProjectileMovementComponent->InitialSpeed = 3000.0f;
 	ProjectileMovementComponent->MaxSpeed = 3000.0f;
@@ -26,15 +27,15 @@ ALaser::ALaser()
 	ProjectileMovementComponent->bShouldBounce = false;
 	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 
+
 }
 
 // Called when the game starts or when spawned
 void ALaser::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	GameModeBase = Cast<AFalcon360GameModeBase>(GetWorld()->GetAuthGameMode());
-
 }
 
 // Called every frame
@@ -51,6 +52,18 @@ void ALaser::SetLaserType(FName LaserName)
 	ProjectileMovementComponent->Velocity =  GameModeBase->GetSpeed(LaserName) * GetActorForwardVector();
 	GetWorld()->GetTimerManager().SetTimer(LifetimeTimerHandle, this, &ALaser::DestroyLaser,
 		GameModeBase->GetTime(LaserName), true);
+	LaserCollider->SetCollisionObjectType(GameModeBase->GetCollisionChannel(LaserName));
+	LaserCollider->OnComponentBeginOverlap.AddDynamic(this, &ALaser::OnLaserOverlap);
+}
+
+void ALaser::OnLaserOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor)
+	{
+		OtherActor->Destroy();
+	}
+	Destroy();
 }
 
 void ALaser::DestroyLaser()
