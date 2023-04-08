@@ -6,25 +6,25 @@
 
 UNiagaraSystem* AFalcon360GameModeBase::GetNiagaraSystem(FName BlasterName) const
 {
-	return DataTable->FindRow<FBlasters>(BlasterName, "")->BlasterEffect;
+	return BlastersTable->FindRow<FBlasters>(BlasterName, "")->BlasterEffect;
 }
 
 float AFalcon360GameModeBase::GetDamage(FName BlasterName) const
 {
-	return DataTable->FindRow<FBlasters>(BlasterName, "")->Damage;
+	return BlastersTable->FindRow<FBlasters>(BlasterName, "")->Damage;
 }
 
 float AFalcon360GameModeBase::GetTime(FName BlasterName) const
 {
-	return DataTable->FindRow<FBlasters>(BlasterName, "")->Time;
+	return BlastersTable->FindRow<FBlasters>(BlasterName, "")->Time;
 }
 
 float AFalcon360GameModeBase::GetSpeed(FName BlasterName) const
 {
-	return DataTable->FindRow<FBlasters>(BlasterName, "")->Speed;
+	return BlastersTable->FindRow<FBlasters>(BlasterName, "")->Speed;
 }
 
 TEnumAsByte<ECollisionChannel> AFalcon360GameModeBase::GetCollisionChannel(FName BlasterName) const
 {
-	return DataTable->FindRow<FBlasters>(BlasterName, "")->CollisionChannel;
+	return BlastersTable->FindRow<FBlasters>(BlasterName, "")->CollisionChannel;
 }

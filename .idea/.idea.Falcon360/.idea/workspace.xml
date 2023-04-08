@@ -8,16 +8,9 @@
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Laser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Laser.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,6 +165,7 @@
       <workItem from="1680735963433" duration="124000" />
       <workItem from="1680738462518" duration="3596000" />
       <workItem from="1680902248340" duration="7283000" />
+      <workItem from="1680918692922" duration="6194000" />
     </task>
     <servers />
   </component>

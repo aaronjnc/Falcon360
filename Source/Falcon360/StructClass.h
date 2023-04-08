@@ -26,7 +26,28 @@ struct FBlasters : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TEnumAsByte<ECollisionChannel> CollisionChannel;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float FireRate;
 	
+};
+
+USTRUCT(BlueprintType)
+struct FEnemyShips : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	class UStaticMesh* StaticMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Health;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Shield;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FBlasters BlasterType;
 };
 
 /**
