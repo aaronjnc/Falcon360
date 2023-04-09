@@ -7,9 +7,102 @@
   <component name="ChangeListManager">
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Arms_MetalRed_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Arms_Metal_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/BlankScreen.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/BlankScreen.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Dark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Dark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/DarkWindow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/DarkWindow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Interior_BlankScreen_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Interior_PolishedMetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Metal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Metal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/MetalDark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/MetalDark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/MetalOrange.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/MetalOrange.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/MetalRed.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/MetalRed.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/PolishedMetalDark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/PolishedMetalDark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/RedEngineGlow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/RedEngineGlow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_DarkWindow_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_Dark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_MetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_MetalOrange_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_MetalRed_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_Metal_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_PolishedMetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TIE_Defender_Elite_RedEngineGlow_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TieWIng.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/TieWIng.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Wings_Dark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Wings_MetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Wings_MetalRed_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Wings_Metal_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Wings_Metal_01.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/TIE_Defender/Wings_TieWIng_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/BlankScreen.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/BlankScreen.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/DarkWindow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/DarkWindow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/Interior_BlankScreen_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/Interior_PolishedMetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/Metal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/Metal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/MetalDark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/MetalDark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/MetalOrange.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/MetalOrange.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/PolishedMetalDark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/PolishedMetalDark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/RedEngineGlow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/RedEngineGlow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TIE_Avenger_DarkWindow_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TIE_Avenger_MetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TIE_Avenger_MetalOrange_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TIE_Avenger_Metal_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TIE_Avenger_Metal_01.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TIE_Avenger_PolishedMetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TIE_Avenger_RedEngineGlow_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TieWIng.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/TieWIng.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/Wings_Metal_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/Wings_Metal_01.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Avenger/Wings_TieWIng_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard_1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/1_-_Standard_1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/2_-_Standard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/2_-_Standard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/3_-_Standard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/3_-_Standard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/7_-_Standard.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/7_-_Standard.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/7_-_Standard_1.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/7_-_Standard_1.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material1.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material11.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material112.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material1123.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material11234.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material112345.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material1123456.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material11234567.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material112345678.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material1123456789.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material112345678910.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material11234567891011.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material21.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Fighter/Material212.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/BlankScreen.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/BlankScreen.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Dark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Dark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/DarkWindow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/DarkWindow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Interior_BlankScreen_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Interior_PolishedMetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Metal.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Metal.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/MetalDark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/MetalDark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/MetalOrange.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/MetalOrange.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/PolishedMetalDark.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/PolishedMetalDark.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/RedEngineGlow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/RedEngineGlow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TIE_Shuttle_DarkWindow_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TIE_Shuttle_Dark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TIE_Shuttle_MetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TIE_Shuttle_MetalOrange_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TIE_Shuttle_Metal_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TIE_Shuttle_PolishedMetalDark_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TIE_Shuttle_RedEngineGlow_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TieWIng.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/TieWIng.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Wings_Metal_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Models/Tie_Shuttle/Wings_TieWIng_0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,6 +259,8 @@
       <workItem from="1680738462518" duration="3596000" />
       <workItem from="1680902248340" duration="7283000" />
       <workItem from="1680918692922" duration="6194000" />
+      <workItem from="1680988998422" duration="2538000" />
+      <workItem from="1680992781224" duration="4321000" />
     </task>
     <servers />
   </component>

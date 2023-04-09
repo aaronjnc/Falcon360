@@ -16,7 +16,14 @@ AEnemyShip::AEnemyShip()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
+
 	MovementComponent = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("Movement Component"));
+
+	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Static Mesh Component"));
+	StaticMeshComponent->SetupAttachment(RootComponent);
+
+	TurretComponent = CreateDefaultSubobject<UTurret>(TEXT("Turret Component"));
 
 }
 
@@ -32,9 +39,9 @@ void AEnemyShip::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	FRotator GoalRotation = (NextPointPosition - GetActorLocation()).Rotation();
-	FRotator NewRotation = FMath::FInterpConstantTo(GetActorRotation(), GoalRotation, DeltaTime, RotateSpeed);
+	FRotator NewRotation =FMath::RInterpConstantTo(GetActorRotation(), GoalRotation, DeltaTime, RotateSpeed);
 	SetActorRotation(NewRotation);
-	MovementComponent->Velocity = GetActorForwardVector() * Speed;
+	RootComponent->ComponentVelocity = GetActorForwardVector() * Speed;
 	if ((NextPointPosition - GetActorLocation()).Size() < 100)
 	{
 		SetNextPoint(NextPoint->GetNextPoint());
@@ -47,6 +54,8 @@ void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo)
 	Health = ShipInfo.Health;
 	Shield = ShipInfo.Shield;
 	bLeadShip = IsLeadShip;
+	TurretComponent->TableRow = ShipInfo.BlasterType;
+	SetActorScale3D(FVector(ShipInfo.Scale, ShipInfo.Scale, ShipInfo.Scale));
 }
 
 void AEnemyShip::SetNextPoint(AFlightPoint* NextFlightPoint)

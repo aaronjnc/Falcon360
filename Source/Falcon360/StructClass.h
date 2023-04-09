@@ -47,7 +47,10 @@ struct FEnemyShips : public FTableRowBase
 	float Shield;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FBlasters BlasterType;
+	FDataTableRowHandle BlasterType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Scale;
 };
 
 /**

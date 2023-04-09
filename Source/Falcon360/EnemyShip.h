@@ -37,10 +37,10 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UFloatingPawnMovement* MovementComponent;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent* StaticMeshComponent;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Components")
 	UTurret* TurretComponent;
 
 	UPROPERTY()

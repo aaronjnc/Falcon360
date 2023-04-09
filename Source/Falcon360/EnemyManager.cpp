@@ -2,8 +2,8 @@
 
 
 #include "EnemyManager.h"
-
 #include "FlightPoint.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AEnemyManager::AEnemyManager()
@@ -17,13 +17,22 @@ AEnemyManager::AEnemyManager()
 void AEnemyManager::BeginPlay()
 {
 	Super::BeginPlay();
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFlightPoint::StaticClass(), FoundActors);
+	for (AActor* Actor : FoundActors)
+	{
+		AvailableFlightPoints.Add(Cast<AFlightPoint>(Actor));
+	}
 	for (int i = 0; i < LeadShipCount; i++)
 	{
-		AFlightPoint* Point = AvailableFlightPoints[FMath::RandRange(0, AvailableFlightPoints.Num())];
+		AFlightPoint* Point = AvailableFlightPoints[FMath::RandRange(0, AvailableFlightPoints.Num()-1)];
+		int RandomShip = FMath::RandRange(0, ShipTypes.Num()-1);
+		UE_LOG(LogTemp, Warning, TEXT("%d %d"), RandomShip, ShipTypes.Num());
+		FDataTableRowHandle ShipRow = ShipTypes[RandomShip];
 		FActorSpawnParameters Params;
-		LeadShips.Add(GetWorld()->SpawnActor<AEnemyShip>(AEnemyShip::StaticClass(), Point->GetActorLocation(), Point->GetActorRotation(), Params));
-		//LeadShips[i]->SetShipType(true, )
-		
+		LeadShips.Add(GetWorld()->SpawnActor<AEnemyShip>(EnemyShipSpawn, Point->GetActorLocation(), Point->GetActorRotation(), Params));
+		LeadShips[i]->SetShipType(true, *ShipRow.DataTable->FindRow<FEnemyShips>(ShipRow.RowName, ""));
+		LeadShips[i]->SetNextPoint(Point);
 	}
 }
 

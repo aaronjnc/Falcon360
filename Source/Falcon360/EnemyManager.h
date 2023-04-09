@@ -41,4 +41,7 @@ private:
 	UPROPERTY()
 	TArray<AFlightPoint*> TakenFlightPoints;
 
+	UPROPERTY(EditAnywhere, Category = "Spawn info")
+	TSubclassOf<AEnemyShip> EnemyShipSpawn;
+
 };
