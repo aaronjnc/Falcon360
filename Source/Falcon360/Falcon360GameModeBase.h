@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "NiagaraSystem.h"
+#include "StructClass.h"
 #include "Engine/DataTable.h"
 #include "GameFramework/GameModeBase.h"
 #include "Falcon360GameModeBase.generated.h"
@@ -25,6 +26,6 @@ public:
 	TEnumAsByte<ECollisionChannel> GetCollisionChannel(FName BlasterName) const;
 	
 private:
-	UPROPERTY(EditAnywhere, Category = "Blasters")
-	UDataTable* DataTable;
+	UPROPERTY(EditAnywhere, Category = "DataTables")
+	UDataTable* BlastersTable;
 };
