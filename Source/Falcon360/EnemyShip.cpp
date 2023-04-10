@@ -41,7 +41,7 @@ void AEnemyShip::Tick(float DeltaTime)
 	FRotator GoalRotation = (NextPointPosition - GetActorLocation()).Rotation();
 	FRotator NewRotation =FMath::RInterpConstantTo(GetActorRotation(), GoalRotation, DeltaTime, RotateSpeed);
 	SetActorRotation(NewRotation);
-	RootComponent->ComponentVelocity = GetActorForwardVector() * Speed;
+	MovementComponent->Velocity = GetActorForwardVector() * Speed;
 	if ((NextPointPosition - GetActorLocation()).Size() < 100)
 	{
 		SetNextPoint(NextPoint->GetNextPoint());
