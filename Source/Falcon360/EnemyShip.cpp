@@ -48,8 +48,9 @@ void AEnemyShip::Tick(float DeltaTime)
 	}
 }
 
-void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo)
+void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip)
 {
+	LeadShip = NewLeadShip;
 	StaticMeshComponent->SetStaticMesh(ShipInfo.StaticMesh);
 	Health = ShipInfo.Health;
 	Shield = ShipInfo.Shield;
@@ -61,6 +62,11 @@ void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo)
 void AEnemyShip::SetNextPoint(AFlightPoint* NextFlightPoint)
 {
 	NextPoint = NextFlightPoint;
-	NextPointPosition = NextPoint->GetActorLocation();
+	SetDestination(NextPoint->GetActorLocation());
+}
+
+void AEnemyShip::SetDestination(FVector Destination)
+{
+	NextPointPosition = Destination;
 }
 

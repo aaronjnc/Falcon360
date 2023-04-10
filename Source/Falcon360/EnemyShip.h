@@ -10,6 +10,7 @@
 class AFlightPoint;
 class UTurret;
 class UFloatingPawnMovement;
+class ULeadShip;
 
 UCLASS()
 class FALCON360_API AEnemyShip : public APawn
@@ -28,9 +29,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void SetShipType(bool IsLeadShip, FEnemyShips ShipInfo);
+	void SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip);
 
 	void SetNextPoint(AFlightPoint* NextPoint);
+
+	void SetDestination(FVector Destination);
 
 private:
 
@@ -66,6 +69,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Overall")
 	float RotateSpeed;
+
+	UPROPERTY()
+	ULeadShip* LeadShip;
 
 	UPROPERTY()
 	bool bAttacking;

@@ -19,7 +19,7 @@ void ULeadShip::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+	OwningShip = Cast<AEnemyShip>(GetOwner());
 	
 }
 
@@ -30,5 +30,10 @@ void ULeadShip::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+void ULeadShip::BeginAttackRun()
+{
+	OwningShip->SetDestination(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
 }
 

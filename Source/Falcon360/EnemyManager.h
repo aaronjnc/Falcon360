@@ -3,9 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EnemyShip.h"
 #include "GameFramework/Actor.h"
 #include "EnemyManager.generated.h"
+
+class AFlightPoint;
+class AEnemyShip;
+struct FDataTableRowHandle;
+class ULeadShip;
 
 UCLASS()
 class FALCON360_API AEnemyManager : public AActor
@@ -33,7 +37,7 @@ private:
 	TArray<FDataTableRowHandle> ShipTypes;
 
 	UPROPERTY()
-	TArray<AEnemyShip*> LeadShips;
+	TArray<ULeadShip*> LeadShips;
 
 	UPROPERTY()
 	TArray<AFlightPoint*> AvailableFlightPoints;
@@ -43,5 +47,8 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Spawn info")
 	TSubclassOf<AEnemyShip> EnemyShipSpawn;
+
+	UPROPERTY()
+	bool bAttackingShip;
 
 };

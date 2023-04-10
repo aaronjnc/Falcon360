@@ -25,6 +25,8 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	void BeginAttackRun();
+
 private:
 
 	UPROPERTY()
@@ -33,6 +35,7 @@ private:
 	UPROPERTY()
 	TArray<USceneComponent*> FollowPoints;
 
-	
+	UPROPERTY()
+	AEnemyShip* OwningShip;
 		
 };
