@@ -3,6 +3,8 @@
 
 #include "EnemyManager.h"
 #include "FlightPoint.h"
+#include "EnemyShip.h"
+#include "LeadShip.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -27,12 +29,13 @@ void AEnemyManager::BeginPlay()
 	{
 		AFlightPoint* Point = AvailableFlightPoints[FMath::RandRange(0, AvailableFlightPoints.Num()-1)];
 		int RandomShip = FMath::RandRange(0, ShipTypes.Num()-1);
-		UE_LOG(LogTemp, Warning, TEXT("%d %d"), RandomShip, ShipTypes.Num());
 		FDataTableRowHandle ShipRow = ShipTypes[RandomShip];
 		FActorSpawnParameters Params;
-		LeadShips.Add(GetWorld()->SpawnActor<AEnemyShip>(EnemyShipSpawn, Point->GetActorLocation(), Point->GetActorRotation(), Params));
-		LeadShips[i]->SetShipType(true, *ShipRow.DataTable->FindRow<FEnemyShips>(ShipRow.RowName, ""));
-		LeadShips[i]->SetNextPoint(Point);
+		AEnemyShip* EnemyShip = GetWorld()->SpawnActor<AEnemyShip>(EnemyShipSpawn, Point->GetActorLocation(), Point->GetActorRotation(), Params);
+		ULeadShip* LeadShip = Cast<ULeadShip>(EnemyShip->AddComponentByClass(ULeadShip::StaticClass(), false, EnemyShip->GetActorTransform(), false));
+		LeadShips.Add(LeadShip);
+		LeadShip->SetStartingPoint(Point);
+		EnemyShip->SetShipType(true, *ShipRow.DataTable->FindRow<FEnemyShips>(ShipRow.RowName, ""), LeadShip);
 	}
 }
 
@@ -40,6 +43,19 @@ void AEnemyManager::BeginPlay()
 void AEnemyManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (!bAttackingShip)
+	{
+		float RandNum = FMath::RandRange(0.f, 1.f);
+		if (RandNum > .8)
+		{
+			LeadShips[0]->BeginAttackRun();
+			bAttackingShip = true;
+		}
+	}
+}
 
+float AEnemyManager::GetFlyUnderDistance()
+{
+	return FlyUnderDistance;
 }
 

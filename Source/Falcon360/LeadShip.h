@@ -7,6 +7,7 @@
 #include "Components/ActorComponent.h"
 #include "LeadShip.generated.h"
 
+class AEnemyManager;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FALCON360_API ULeadShip : public UActorComponent
@@ -25,6 +26,12 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	void BeginAttackRun();
+
+	FVector GetNextPoint();
+
+	void SetStartingPoint(AFlightPoint* FirstPoint);
+
 private:
 
 	UPROPERTY()
@@ -33,6 +40,16 @@ private:
 	UPROPERTY()
 	TArray<USceneComponent*> FollowPoints;
 
+	UPROPERTY()
+	AEnemyManager* EnemyManager;
+
+	UPROPERTY()
+	AEnemyShip* OwningShip;
 	
+	UPROPERTY()
+	AFlightPoint* NextPoint;
+
+	UPROPERTY()
+	bool bAttacking;
 		
 };

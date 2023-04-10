@@ -5,6 +5,7 @@
 
 #include "EnemyManager.h"
 #include "FlightPoint.h"
+#include "LeadShip.h"
 #include "StructClass.h"
 #include "Turret.h"
 #include "Components/StaticMeshComponent.h"
@@ -44,23 +45,42 @@ void AEnemyShip::Tick(float DeltaTime)
 	MovementComponent->Velocity = GetActorForwardVector() * Speed;
 	if ((NextPointPosition - GetActorLocation()).Size() < 100)
 	{
-		SetNextPoint(NextPoint->GetNextPoint());
+		GetNextPoint();
+	}
+	if (bAttacking && (NextPointPosition - GetActorLocation()).Size() < DivertAttack)
+	{
+		bAttacking = false;
+		GetNextPoint();
 	}
 }
 
-void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo)
+void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip)
 {
+	LeadShip = NewLeadShip;
 	StaticMeshComponent->SetStaticMesh(ShipInfo.StaticMesh);
 	Health = ShipInfo.Health;
 	Shield = ShipInfo.Shield;
 	bLeadShip = IsLeadShip;
 	TurretComponent->TableRow = ShipInfo.BlasterType;
 	SetActorScale3D(FVector(ShipInfo.Scale, ShipInfo.Scale, ShipInfo.Scale));
+	GetNextPoint();
 }
 
-void AEnemyShip::SetNextPoint(AFlightPoint* NextFlightPoint)
+void AEnemyShip::SetDestination(FVector Destination)
 {
-	NextPoint = NextFlightPoint;
-	NextPointPosition = NextPoint->GetActorLocation();
+	NextPointPosition = Destination;
 }
 
+void AEnemyShip::GetNextPoint()
+{
+	if (bLeadShip)
+	{
+		SetDestination(LeadShip->GetNextPoint());
+	}
+}
+
+void AEnemyShip::BeginAttack()
+{
+	bAttacking = true;
+	SetDestination(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+}
