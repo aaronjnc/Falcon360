@@ -28,6 +28,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	float GetFlyUnderDistance();
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Info")
@@ -50,5 +52,8 @@ private:
 
 	UPROPERTY()
 	bool bAttackingShip;
+
+	UPROPERTY(EditAnywhere, Category = "Flight Info")
+	float FlyUnderDistance;
 
 };

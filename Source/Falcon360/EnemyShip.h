@@ -30,10 +30,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	void SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip);
-
-	void SetNextPoint(AFlightPoint* NextPoint);
-
+	
 	void SetDestination(FVector Destination);
+
+	void GetNextPoint();
+
+	void BeginAttack();
 
 private:
 
@@ -56,9 +58,6 @@ private:
 	float FireRate;
 
 	UPROPERTY()
-	AFlightPoint* NextPoint;
-
-	UPROPERTY()
 	FVector NextPointPosition;
 
 	UPROPERTY()
@@ -69,6 +68,9 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Overall")
 	float RotateSpeed;
+
+	UPROPERTY(EditAnywhere, Category = "Overall")
+	float DivertAttack;
 
 	UPROPERTY()
 	ULeadShip* LeadShip;

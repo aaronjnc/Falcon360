@@ -3,6 +3,10 @@
 
 #include "LeadShip.h"
 
+#include "EnemyManager.h"
+#include "FlightPoint.h"
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values for this component's properties
 ULeadShip::ULeadShip()
 {
@@ -19,6 +23,7 @@ void ULeadShip::BeginPlay()
 {
 	Super::BeginPlay();
 
+	EnemyManager = Cast<AEnemyManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AEnemyManager::StaticClass()));
 	OwningShip = Cast<AEnemyShip>(GetOwner());
 	
 }
@@ -34,6 +39,24 @@ void ULeadShip::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 
 void ULeadShip::BeginAttackRun()
 {
-	OwningShip->SetDestination(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+	bAttacking = true;
+	OwningShip->BeginAttack();
+}
+
+FVector ULeadShip::GetNextPoint()
+{
+	if (bAttacking)
+	{
+		float FlyUnderDistance = EnemyManager->GetFlyUnderDistance();
+		bAttacking = false;
+		return GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation() + FVector(0, 0, FlyUnderDistance);
+	}
+	NextPoint = NextPoint->GetNextPoint();
+	return NextPoint->GetActorLocation();
+}
+
+void ULeadShip::SetStartingPoint(AFlightPoint* FirstPoint)
+{
+	NextPoint = FirstPoint;
 }
 
