@@ -4,6 +4,7 @@
 #include "Turret.h"
 #include "Laser.h"
 #include "StructClass.h"
+#include "GameFramework/FloatingPawnMovement.h"
 
 struct FBlasters;
 // Sets default values for this component's properties
@@ -70,7 +71,15 @@ void UTurret::Fire(int index)
 {
 	FActorSpawnParameters Params;
 	ALaser* Laser = GetWorld()->SpawnActor<ALaser>(LaserSubclass, TurretInfos[index].SceneComponent->GetComponentLocation(), TurretInfos[index].SceneComponent->GetComponentRotation(), Params);
-	Laser->SetLaserType(TableRow.RowName, GetOwner()->GetRootComponent()->ComponentVelocity);
+	UFloatingPawnMovement* MovementComponent = Cast<UFloatingPawnMovement>(GetOwner()->GetComponentByClass(UFloatingPawnMovement::StaticClass()));
+	if (MovementComponent)
+	{
+		Laser->SetLaserType(TableRow.RowName, MovementComponent->Velocity);
+	}
+	else
+	{
+		Laser->SetLaserType(TableRow.RowName);
+	}
 	TimerDelegate.BindUFunction(this, "ShootSaved", index);
 	GetWorld()->GetTimerManager().SetTimer(TurretInfos[index].TimerHandle, TimerDelegate, DelayTime, false);
 }

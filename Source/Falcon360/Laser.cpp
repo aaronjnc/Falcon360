@@ -5,6 +5,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Falcon360GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/EngineTypes.h"
 
 // Sets default values
 ALaser::ALaser()
@@ -67,7 +68,8 @@ void ALaser::OnLaserOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherAc
 {
 	if (OtherActor)
 	{
-		OtherActor->Destroy();
+		TSubclassOf<UDamageType> DamageType;
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, GetInstigatorController(), this, DamageType);
 	}
 	Destroy();
 }
