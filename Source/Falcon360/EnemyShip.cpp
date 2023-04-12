@@ -26,6 +26,12 @@ AEnemyShip::AEnemyShip()
 
 	TurretComponent = CreateDefaultSubobject<UTurret>(TEXT("Turret Component"));
 
+	LeftBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Left Blaster"));
+	LeftBlaster->SetupAttachment(StaticMeshComponent);
+	
+	RightBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Right Blaster"));
+	RightBlaster->SetupAttachment(StaticMeshComponent);
+
 }
 
 // Called when the game starts or when spawned
@@ -47,11 +53,17 @@ void AEnemyShip::Tick(float DeltaTime)
 	{
 		GetNextPoint();
 	}
+	if (bAttacking)
+	{
+		TurretComponent->Shoot(false);
+		TurretComponent->Shoot(true);
+	} 
 	if (bAttacking && (NextPointPosition - GetActorLocation()).Size() < DivertAttack)
 	{
 		bAttacking = false;
 		GetNextPoint();
 	}
+
 }
 
 void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip)
@@ -61,7 +73,7 @@ void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* N
 	Health = ShipInfo.Health;
 	Shield = ShipInfo.Shield;
 	bLeadShip = IsLeadShip;
-	TurretComponent->TableRow = ShipInfo.BlasterType;
+	TurretComponent->SetTurretInfo(ShipInfo.BlasterType, LeftBlaster, RightBlaster);
 	SetActorScale3D(FVector(ShipInfo.Scale, ShipInfo.Scale, ShipInfo.Scale));
 	GetNextPoint();
 }

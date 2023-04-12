@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DataTable.h"
 #include "GameFramework/Pawn.h"
 #include "VizParentPawn.generated.h"
 
@@ -75,5 +76,8 @@ private:
 
 	UPROPERTY()
 	APlayerController* PlayerController;
+
+	UPROPERTY(EditAnywhere, Category = "Blasters")
+	FDataTableRowHandle BlasterInfo;
 
 };

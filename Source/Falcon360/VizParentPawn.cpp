@@ -43,6 +43,7 @@ void AVizParentPawn::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	TurretComponent->SetTurretInfo(BlasterInfo, LeftBlaster, RightBlaster);
 }
 
 // Called every frame
@@ -59,8 +60,8 @@ void AVizParentPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &AVizParentPawn::RotatePlayer);
-		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootLeft);
-		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootRight);
+		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootLeft);
+		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootRight);
 	}
 }
 
@@ -71,12 +72,12 @@ void AVizParentPawn::RotatePlayer(const FInputActionValue& Value)
 
 void AVizParentPawn::ShootLeft()
 {
-	TurretComponent->Shoot(LeftBlaster->GetComponentLocation(), LeftBlaster->GetComponentRotation());
+	TurretComponent->Shoot(true);
 }
 
 void AVizParentPawn::ShootRight()
 {
-	TurretComponent->Shoot(RightBlaster->GetComponentLocation(), RightBlaster->GetComponentRotation());
+	TurretComponent->Shoot(false);
 }
 
 

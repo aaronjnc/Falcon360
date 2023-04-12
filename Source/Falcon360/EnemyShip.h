@@ -48,6 +48,12 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UTurret* TurretComponent;
 
+	UPROPERTY(EditAnywhere, Category = "Components")
+	USceneComponent* LeftBlaster;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	USceneComponent* RightBlaster;
+
 	UPROPERTY()
 	float Health;
 
