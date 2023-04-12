@@ -5,6 +5,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Falcon360GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
+#include "Engine/EngineTypes.h"
 
 // Sets default values
 ALaser::ALaser()
@@ -50,18 +51,25 @@ void ALaser::SetLaserType(FName LaserName)
 	LaserComponent->SetAsset(GameModeBase->GetNiagaraSystem(LaserName));
 	Damage = GameModeBase->GetDamage(LaserName);
 	ProjectileMovementComponent->Velocity =  GameModeBase->GetSpeed(LaserName) * GetActorForwardVector();
+	LaserCollider->SetCollisionObjectType(GameModeBase->GetCollisionChannel(LaserName));
 	GetWorld()->GetTimerManager().SetTimer(LifetimeTimerHandle, this, &ALaser::DestroyLaser,
 		GameModeBase->GetTime(LaserName), true);
-	LaserCollider->SetCollisionObjectType(GameModeBase->GetCollisionChannel(LaserName));
 	LaserCollider->OnComponentBeginOverlap.AddDynamic(this, &ALaser::OnLaserOverlap);
 }
 
+void ALaser::SetLaserType(FName LaserName, FVector InitialVelocity)
+{
+	SetLaserType(LaserName);
+	ProjectileMovementComponent->Velocity = GameModeBase->GetSpeed(LaserName) * GetActorForwardVector() + InitialVelocity;
+}
+
 void ALaser::OnLaserOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+                            UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor)
 	{
-		OtherActor->Destroy();
+		TSubclassOf<UDamageType> DamageType;
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, GetInstigatorController(), this, DamageType);
 	}
 	Destroy();
 }

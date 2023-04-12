@@ -26,6 +26,12 @@ AEnemyShip::AEnemyShip()
 
 	TurretComponent = CreateDefaultSubobject<UTurret>(TEXT("Turret Component"));
 
+	LeftBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Left Blaster"));
+	LeftBlaster->SetupAttachment(StaticMeshComponent);
+	
+	RightBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Right Blaster"));
+	RightBlaster->SetupAttachment(StaticMeshComponent);
+
 }
 
 // Called when the game starts or when spawned
@@ -47,21 +53,29 @@ void AEnemyShip::Tick(float DeltaTime)
 	{
 		GetNextPoint();
 	}
+	if (bAttacking)
+	{
+		TurretComponent->Shoot(false);
+		TurretComponent->Shoot(true);
+	} 
 	if (bAttacking && (NextPointPosition - GetActorLocation()).Size() < DivertAttack)
 	{
 		bAttacking = false;
 		GetNextPoint();
 	}
+
 }
 
 void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip)
 {
 	LeadShip = NewLeadShip;
 	StaticMeshComponent->SetStaticMesh(ShipInfo.StaticMesh);
-	Health = ShipInfo.Health;
-	Shield = ShipInfo.Shield;
+	MaxHealth = ShipInfo.Health;
+	Health = MaxHealth;
+	MaxShield = ShipInfo.Shield;
+	Shield = MaxShield;
 	bLeadShip = IsLeadShip;
-	TurretComponent->TableRow = ShipInfo.BlasterType;
+	TurretComponent->SetTurretInfo(ShipInfo.BlasterType, LeftBlaster, RightBlaster);
 	SetActorScale3D(FVector(ShipInfo.Scale, ShipInfo.Scale, ShipInfo.Scale));
 	GetNextPoint();
 }
@@ -83,4 +97,18 @@ void AEnemyShip::BeginAttack()
 {
 	bAttacking = true;
 	SetDestination(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+}
+
+float AEnemyShip::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator,
+	AActor* DamageCauser)
+{
+	float Remaining = FMath::Clamp(DamageAmount - Shield, 0, DamageAmount);
+	Shield = FMath::Clamp(Shield - DamageAmount, 0, MaxShield);
+	float FinalRemaining = FMath::Clamp(Remaining - Health, 0, Remaining);
+	Health = FMath::Clamp(Health - Remaining, 0, MaxHealth);
+	if (Health <= 0)
+	{
+		Destroy();
+	}
+	return Health;
 }

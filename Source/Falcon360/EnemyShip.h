@@ -37,6 +37,8 @@ public:
 
 	void BeginAttack();
 
+	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Components")
@@ -48,8 +50,20 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UTurret* TurretComponent;
 
+	UPROPERTY(EditAnywhere, Category = "Components")
+	USceneComponent* LeftBlaster;
+
+	UPROPERTY(EditAnywhere, Category = "Components")
+	USceneComponent* RightBlaster;
+
+	UPROPERTY()
+	float MaxHealth;
+
 	UPROPERTY()
 	float Health;
+
+	UPROPERTY()
+	float MaxShield;
 
 	UPROPERTY()
 	float Shield;

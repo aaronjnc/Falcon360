@@ -30,6 +30,8 @@ public:
 
 	void SetLaserType(FName LaserName);
 
+	void SetLaserType(FName LaserName, FVector InitialVelocity);
+
 private:
 
 	UFUNCTION()

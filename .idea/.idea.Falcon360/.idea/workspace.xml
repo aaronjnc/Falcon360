@@ -7,15 +7,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_EnemyManager.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_EnemyManager.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Ships.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Ships.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/LeadShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/LeadShip.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/LeadShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/LeadShip.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Turret.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Turret.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,14 +31,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "CodeLensConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="C++ Project.Falcon360">
     <configuration name="Falcon360" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -176,6 +177,8 @@
       <workItem from="1681142031928" duration="385000" />
       <workItem from="1681153253510" duration="3947000" />
       <workItem from="1681164491557" duration="2809000" />
+      <workItem from="1681251514609" duration="6147000" />
+      <workItem from="1681327928810" duration="3092000" />
     </task>
     <servers />
   </component>
