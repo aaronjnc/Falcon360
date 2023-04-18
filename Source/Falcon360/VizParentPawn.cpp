@@ -74,8 +74,7 @@ float AVizParentPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageE
 	Shield = FMath::Clamp(Shield - DamageAmount, 0, MaxShield);
 	float FinalRemaining = FMath::Clamp(Remaining - Health, 0, Remaining);
 	Health = FMath::Clamp(Health - Remaining, 0, MaxHealth);
-	UE_LOG(LogTemp, Warning, TEXT("Health: %d Shield: %d"), Health, Shield);
-	if (Health < 0)
+	if (Health <= 0)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Dead"));
 	}

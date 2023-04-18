@@ -91,4 +91,10 @@ private:
 
 	UPROPERTY()
 	bool bAttacking;
+
+	UPROPERTY()
+	bool bShooting;
+
+	UPROPERTY()
+	float AngleDiff;
 };

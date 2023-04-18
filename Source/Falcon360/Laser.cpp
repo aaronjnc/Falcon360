@@ -35,7 +35,7 @@ ALaser::ALaser()
 void ALaser::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *GetName());
 	GameModeBase = Cast<AFalcon360GameModeBase>(GetWorld()->GetAuthGameMode());
 }
 
