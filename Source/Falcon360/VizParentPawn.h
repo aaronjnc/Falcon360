@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "GameFramework/Pawn.h"
+#include "TimerManager.h"
 #include "VizParentPawn.generated.h"
 
 class UTurret;
@@ -12,6 +13,22 @@ struct FInputActionValue;
 class UInputAction;
 class UEnhancedInputLocalPlayerSubsystem;
 class UBoxComponent;
+class AVizParentPawn;
+
+USTRUCT()
+struct FBlasterInfo
+{
+	GENERATED_BODY()
+
+	FTimerHandle TimerHandle;
+
+	bool bShooting;
+
+	typedef void (AVizParentPawn::* CallBackFunction )(void);
+
+	CallBackFunction PtrFunction;
+	
+};
 
 UCLASS()
 class FALCON360_API AVizParentPawn : public APawn
@@ -44,7 +61,16 @@ private:
 	void ShootLeft();
 
 	UFUNCTION()
+	void StopShootingLeft();
+
+	UFUNCTION()
 	void ShootRight();
+
+	UFUNCTION()
+	void StopShootingRight();
+
+	UFUNCTION()
+	void ContinueShooting(int i);
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent* TurretMesh;
@@ -93,5 +119,13 @@ private:
 
 	UPROPERTY()
 	float Shield;
+
+	UPROPERTY()
+	float FireRate;
+
+	FTimerDelegate TimerDelegate;
+
+	UPROPERTY()
+	TArray<FBlasterInfo> BlasterInfos;
 
 };

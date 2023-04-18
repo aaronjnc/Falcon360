@@ -4,6 +4,7 @@
 #include "VizParentPawn.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "StructClass.h"
 #include "Turret.h"
 #include "Components/BoxComponent.h"
 
@@ -43,9 +44,14 @@ void AVizParentPawn::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	FireRate = BlasterInfo.DataTable->FindRow<FBlasters>(BlasterInfo.RowName, "")->FireRate;
 	TurretComponent->SetTurretInfo(BlasterInfo, LeftBlaster, RightBlaster);
 	Health = MaxHealth;
 	Shield = MaxShield;
+	BlasterInfos.Add(FBlasterInfo());
+	BlasterInfos[0].PtrFunction = &AVizParentPawn::ShootLeft;
+	BlasterInfos.Add(FBlasterInfo());
+	BlasterInfos[1].PtrFunction = &AVizParentPawn::ShootLeft;
 }
 
 // Called every frame
@@ -62,8 +68,10 @@ void AVizParentPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &AVizParentPawn::RotatePlayer);
-		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootLeft);
-		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootRight);
+		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootLeft);
+		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Completed, this, &AVizParentPawn::StopShootingLeft);
+		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootRight);
+		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Completed, this, &AVizParentPawn::StopShootingRight);
 	}
 }
 
@@ -89,11 +97,35 @@ void AVizParentPawn::RotatePlayer(const FInputActionValue& Value)
 void AVizParentPawn::ShootLeft()
 {
 	TurretComponent->Shoot(true);
+	BlasterInfos[0].bShooting = true;
+	TimerDelegate.BindUFunction(this, "ContinueShooting", 0);
+	GetWorld()->GetTimerManager().SetTimer(BlasterInfos[0].TimerHandle, TimerDelegate, FireRate, false);
+}
+
+void AVizParentPawn::StopShootingLeft()
+{
+	BlasterInfos[0].bShooting = false;
 }
 
 void AVizParentPawn::ShootRight()
 {
 	TurretComponent->Shoot(false);
+	BlasterInfos[1].bShooting = true;
+	TimerDelegate.BindUFunction(this, "ContinueShooting", 1);
+	GetWorld()->GetTimerManager().SetTimer(BlasterInfos[1].TimerHandle, TimerDelegate, FireRate, false);
+}
+
+void AVizParentPawn::StopShootingRight()
+{
+	BlasterInfos[1].bShooting = false;
+}
+
+void AVizParentPawn::ContinueShooting(int i)
+{
+	if (BlasterInfos[i].bShooting)
+	{
+		(this->*BlasterInfos[i].PtrFunction)();
+	}
 }
 
 

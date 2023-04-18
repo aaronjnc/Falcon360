@@ -14,12 +14,6 @@ struct FTurretInfo
 	GENERATED_BODY()
 
 	USceneComponent* SceneComponent;
-
-	FTimerHandle TimerHandle;
-
-	bool bSaved;
-
-	bool bShot;
 	
 };
 
@@ -46,9 +40,6 @@ public:
 	// Called every frame
 	UFUNCTION()
 	void Shoot(bool bLeft);
-
-	UFUNCTION()
-	void ShootSaved(int index);
 
 private:
 
