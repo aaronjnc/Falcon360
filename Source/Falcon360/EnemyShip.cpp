@@ -55,21 +55,26 @@ void AEnemyShip::Tick(float DeltaTime)
 	}
 	if (bAttacking && (AngleDiff < 3 || AngleDiff > 357))
 	{
-		bShooting = true;
 		const FRotator LeftRotation = (NextPointPosition - LeftBlaster->GetComponentLocation()).Rotation();
 		LeftBlaster->SetWorldRotation(LeftRotation);
 		const FRotator RightRotation = (NextPointPosition - RightBlaster->GetComponentLocation()).Rotation();
 		RightBlaster->SetWorldRotation(RightRotation);
+		if (!bShooting)
+		{
+			bShooting = true;
+			TurretComponent->Shoot(false);
+			TurretComponent->Shoot(true);
+			GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, FireRate, false);
+		}
+	}
+	else if (bShooting)
+	{
+		bShooting = false;
 	}
 	if ((NextPointPosition - GetActorLocation()).Size() < 100)
 	{
 		GetNextPoint();
 	}
-	if (bShooting)
-	{
-		TurretComponent->Shoot(false);
-		TurretComponent->Shoot(true);
-	} 
 	if (bAttacking && (NextPointPosition - GetActorLocation()).Size() < DivertAttack)
 	{
 		bShooting = false;
@@ -88,7 +93,9 @@ void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* N
 	MaxShield = ShipInfo.Shield;
 	Shield = MaxShield;
 	bLeadShip = IsLeadShip;
+	FireRate = ShipInfo.BlasterType.DataTable->FindRow<FBlasters>(ShipInfo.BlasterType.RowName, "")->FireRate;
 	TurretComponent->SetTurretInfo(ShipInfo.BlasterType, LeftBlaster, RightBlaster);
+	TimerDelegate.BindUFunction(this, "ContinueShooting");
 	SetActorScale3D(FVector(ShipInfo.Scale, ShipInfo.Scale, ShipInfo.Scale));
 	GetNextPoint();
 }
@@ -124,4 +131,13 @@ float AEnemyShip::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 		Destroy();
 	}
 	return Health;
+}
+
+void AEnemyShip::ContinueShooting()
+{
+	if (bShooting)
+	{
+		TurretComponent->Shoot(true);
+		TurretComponent->Shoot(false);
+	}
 }

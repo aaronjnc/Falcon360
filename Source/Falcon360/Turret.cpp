@@ -42,29 +42,7 @@ void UTurret::Shoot(bool bLeft)
 	{
 		index = 1;
 	}
-	if (TurretInfos[index].bShot)
-	{
-		if (!TurretInfos[index].bSaved)
-		{
-			TurretInfos[index].bSaved = true;
-		}
-		return;
-	}
-	TurretInfos[index].bShot = true;
 	Fire(index);
-}
-
-void UTurret::ShootSaved(int index)
-{
-	if (TurretInfos[index].bSaved)
-	{
-		TurretInfos[index].bSaved = false;
-		Fire(index);
-	}
-	else
-	{
-		TurretInfos[index].bShot = false;
-	}
 }
 
 void UTurret::Fire(int index)
@@ -80,6 +58,4 @@ void UTurret::Fire(int index)
 	{
 		Laser->SetLaserType(TableRow.RowName);
 	}
-	TimerDelegate.BindUFunction(this, "ShootSaved", index);
-	GetWorld()->GetTimerManager().SetTimer(TurretInfos[index].TimerHandle, TimerDelegate, DelayTime, false);
 }
