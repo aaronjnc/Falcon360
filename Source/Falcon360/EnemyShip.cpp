@@ -49,17 +49,30 @@ void AEnemyShip::Tick(float DeltaTime)
 	FRotator NewRotation =FMath::RInterpConstantTo(GetActorRotation(), GoalRotation, DeltaTime, RotateSpeed);
 	SetActorRotation(NewRotation);
 	MovementComponent->Velocity = GetActorForwardVector() * Speed;
+	if (bAttacking)
+	{
+		AngleDiff = FMath::Clamp(FVector::DotProduct(GoalRotation.Euler(), NewRotation.Euler()),0, 360);
+	}
+	if (bAttacking && (AngleDiff < 3 || AngleDiff > 357))
+	{
+		bShooting = true;
+		const FRotator LeftRotation = (NextPointPosition - LeftBlaster->GetComponentLocation()).Rotation();
+		LeftBlaster->SetWorldRotation(LeftRotation);
+		const FRotator RightRotation = (NextPointPosition - RightBlaster->GetComponentLocation()).Rotation();
+		RightBlaster->SetWorldRotation(RightRotation);
+	}
 	if ((NextPointPosition - GetActorLocation()).Size() < 100)
 	{
 		GetNextPoint();
 	}
-	if (bAttacking)
+	if (bShooting)
 	{
 		TurretComponent->Shoot(false);
 		TurretComponent->Shoot(true);
 	} 
 	if (bAttacking && (NextPointPosition - GetActorLocation()).Size() < DivertAttack)
 	{
+		bShooting = false;
 		bAttacking = false;
 		GetNextPoint();
 	}

@@ -8,6 +8,11 @@
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,6 +177,7 @@
       <workItem from="1681251514609" duration="6147000" />
       <workItem from="1681327928810" duration="3092000" />
       <workItem from="1681335322827" duration="647000" />
+      <workItem from="1681790754512" duration="2384000" />
     </task>
     <servers />
   </component>
