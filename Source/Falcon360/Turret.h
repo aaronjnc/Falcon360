@@ -5,7 +5,23 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Engine/DataTable.h"
+#include "TimerManager.h"
 #include "Turret.generated.h"
+
+USTRUCT()
+struct FTurretInfo
+{
+	GENERATED_BODY()
+
+	USceneComponent* SceneComponent;
+
+	FTimerHandle TimerHandle;
+
+	bool bSaved;
+
+	bool bShot;
+	
+};
 
 
 class ALaser;
@@ -22,15 +38,35 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+public:
+
+	UFUNCTION()
+	void SetTurretInfo(FDataTableRowHandle RowHandle, USceneComponent* LeftTurret, USceneComponent* RightTurret);
+	
 	// Called every frame
 	UFUNCTION()
-	void Shoot(FVector Location, FRotator Direction);
+	void Shoot(bool bLeft);
+
+	UFUNCTION()
+	void ShootSaved(int index);
+
+private:
+
+	UFUNCTION()
+	void Fire(int index);
 
 	UPROPERTY(EditAnywhere, Category = "Blasters")
 	TSubclassOf<ALaser> LaserSubclass;
 
-	UPROPERTY(EditAnywhere, Category = "Blasters")
+	UPROPERTY()
 	FDataTableRowHandle TableRow;
+	
+	UPROPERTY()
+	float DelayTime;
+
+	UPROPERTY()
+	TArray<FTurretInfo> TurretInfos;
+
+	FTimerDelegate TimerDelegate;
 		
 };

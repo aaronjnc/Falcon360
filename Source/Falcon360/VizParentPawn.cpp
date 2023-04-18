@@ -43,6 +43,9 @@ void AVizParentPawn::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	TurretComponent->SetTurretInfo(BlasterInfo, LeftBlaster, RightBlaster);
+	Health = MaxHealth;
+	Shield = MaxShield;
 }
 
 // Called every frame
@@ -59,9 +62,23 @@ void AVizParentPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &AVizParentPawn::RotatePlayer);
-		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootLeft);
-		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Started, this, &AVizParentPawn::ShootRight);
+		EnhancedInputComponent->BindAction(LeftShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootLeft);
+		EnhancedInputComponent->BindAction(RightShootAction, ETriggerEvent::Triggered, this, &AVizParentPawn::ShootRight);
 	}
+}
+
+float AVizParentPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator,
+	AActor* DamageCauser)
+{
+	float Remaining = FMath::Clamp(DamageAmount - Shield, 0, DamageAmount);
+	Shield = FMath::Clamp(Shield - DamageAmount, 0, MaxShield);
+	float FinalRemaining = FMath::Clamp(Remaining - Health, 0, Remaining);
+	Health = FMath::Clamp(Health - Remaining, 0, MaxHealth);
+	if (Health <= 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Dead"));
+	}
+	return Health;
 }
 
 void AVizParentPawn::RotatePlayer(const FInputActionValue& Value)
@@ -71,12 +88,12 @@ void AVizParentPawn::RotatePlayer(const FInputActionValue& Value)
 
 void AVizParentPawn::ShootLeft()
 {
-	TurretComponent->Shoot(LeftBlaster->GetComponentLocation(), LeftBlaster->GetComponentRotation());
+	TurretComponent->Shoot(true);
 }
 
 void AVizParentPawn::ShootRight()
 {
-	TurretComponent->Shoot(RightBlaster->GetComponentLocation(), RightBlaster->GetComponentRotation());
+	TurretComponent->Shoot(false);
 }
 
 

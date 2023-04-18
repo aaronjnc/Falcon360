@@ -7,17 +7,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Laser.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Laser.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_VizParentPawn.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Falcon360GameModeBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +33,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -172,6 +168,16 @@
       <workItem from="1680735963433" duration="124000" />
       <workItem from="1680738462518" duration="3596000" />
       <workItem from="1680902248340" duration="7283000" />
+      <workItem from="1680918692922" duration="6194000" />
+      <workItem from="1680988998422" duration="2538000" />
+      <workItem from="1680992781224" duration="4321000" />
+      <workItem from="1681142031928" duration="385000" />
+      <workItem from="1681153253510" duration="3947000" />
+      <workItem from="1681164491557" duration="2809000" />
+      <workItem from="1681251514609" duration="6147000" />
+      <workItem from="1681327928810" duration="3092000" />
+      <workItem from="1681335322827" duration="647000" />
+      <workItem from="1681790754512" duration="2384000" />
     </task>
     <servers />
   </component>

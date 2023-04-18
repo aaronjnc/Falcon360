@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DataTable.h"
 #include "GameFramework/Pawn.h"
 #include "VizParentPawn.generated.h"
 
@@ -31,6 +32,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 private:
 
@@ -75,5 +78,20 @@ private:
 
 	UPROPERTY()
 	APlayerController* PlayerController;
+
+	UPROPERTY(EditAnywhere, Category = "Blasters")
+	FDataTableRowHandle BlasterInfo;
+
+	UPROPERTY(EditAnywhere, Category = "Health")
+	float MaxHealth;
+	
+	UPROPERTY()
+	float Health;
+
+	UPROPERTY(EditAnywhere, Category = "Health")
+	float MaxShield;
+
+	UPROPERTY()
+	float Shield;
 
 };

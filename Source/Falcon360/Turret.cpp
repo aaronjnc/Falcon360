@@ -3,6 +3,8 @@
 
 #include "Turret.h"
 #include "Laser.h"
+#include "StructClass.h"
+#include "GameFramework/FloatingPawnMovement.h"
 
 struct FBlasters;
 // Sets default values for this component's properties
@@ -20,13 +22,64 @@ UTurret::UTurret()
 void UTurret::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	TurretInfos.Add(FTurretInfo());
+	TurretInfos.Add(FTurretInfo());
 }
 
-void UTurret::Shoot(FVector Location, FRotator Direction)
+void UTurret::SetTurretInfo(FDataTableRowHandle RowHandle, USceneComponent* LeftTurret, USceneComponent* RightTurret)
+{
+	TableRow = RowHandle;
+	DelayTime = TableRow.DataTable->FindRow<FBlasters>(TableRow.RowName, "")->FireRate;
+	TurretInfos[0].SceneComponent = LeftTurret;
+	TurretInfos[1].SceneComponent = RightTurret;
+}
+
+void UTurret::Shoot(bool bLeft)
+{
+	int index = 0;
+	if (!bLeft)
+	{
+		index = 1;
+	}
+	if (TurretInfos[index].bShot)
+	{
+		if (!TurretInfos[index].bSaved)
+		{
+			TurretInfos[index].bSaved = true;
+		}
+		return;
+	}
+	TurretInfos[index].bShot = true;
+	Fire(index);
+}
+
+void UTurret::ShootSaved(int index)
+{
+	if (TurretInfos[index].bSaved)
+	{
+		TurretInfos[index].bSaved = false;
+		Fire(index);
+	}
+	else
+	{
+		TurretInfos[index].bShot = false;
+	}
+}
+
+void UTurret::Fire(int index)
 {
 	FActorSpawnParameters Params;
-	ALaser* Laser = GetWorld()->SpawnActor<ALaser>(LaserSubclass, Location, Direction, Params);
-	Laser->SetLaserType(TableRow.RowName);
+	ALaser* Laser = GetWorld()->SpawnActor<ALaser>(LaserSubclass, TurretInfos[index].SceneComponent->GetComponentLocation(), TurretInfos[index].SceneComponent->GetComponentRotation(), Params);
+	UFloatingPawnMovement* MovementComponent = Cast<UFloatingPawnMovement>(GetOwner()->GetComponentByClass(UFloatingPawnMovement::StaticClass()));
+	if (MovementComponent)
+	{
+		Laser->SetLaserType(TableRow.RowName, MovementComponent->Velocity);
+	}
+	else
+	{
+		Laser->SetLaserType(TableRow.RowName);
+	}
+	TimerDelegate.BindUFunction(this, "ShootSaved", index);
+	GetWorld()->GetTimerManager().SetTimer(TurretInfos[index].TimerHandle, TimerDelegate, DelayTime, false);
 }
-
