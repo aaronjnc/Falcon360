@@ -11,6 +11,7 @@ class AFlightPoint;
 class UTurret;
 class UFloatingPawnMovement;
 class ULeadShip;
+class AEnemyShip;
 
 UCLASS()
 class FALCON360_API AEnemyShip : public APawn
@@ -40,6 +41,9 @@ public:
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 private:
+
+	UFUNCTION()
+	void ContinueShooting();
 
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UFloatingPawnMovement* MovementComponent;
@@ -97,4 +101,8 @@ private:
 
 	UPROPERTY()
 	float AngleDiff;
+
+	FTimerDelegate TimerDelegate;
+
+	FTimerHandle TimerHandle;
 };
