@@ -49,6 +49,7 @@ FVector ULeadShip::GetNextPoint()
 	{
 		float FlyUnderDistance = EnemyManager->GetFlyUnderDistance();
 		bAttacking = false;
+		EnemyManager->ShipAttack();
 		return GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation() + FVector(0, 0, FlyUnderDistance);
 	}
 	NextPoint = NextPoint->GetNextPoint();

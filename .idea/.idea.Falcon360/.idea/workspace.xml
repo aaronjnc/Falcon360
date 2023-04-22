@@ -7,13 +7,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Turret.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Turret.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Turret.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Turret.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_EnemyManager.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_EnemyManager.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/LeadShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/LeadShip.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +177,7 @@
       <workItem from="1681335322827" duration="647000" />
       <workItem from="1681790754512" duration="2384000" />
       <workItem from="1681794090418" duration="2990000" />
+      <workItem from="1682132372125" duration="9291000" />
     </task>
     <servers />
   </component>

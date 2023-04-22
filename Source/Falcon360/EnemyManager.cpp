@@ -37,25 +37,33 @@ void AEnemyManager::BeginPlay()
 		LeadShip->SetStartingPoint(Point);
 		EnemyShip->SetShipType(true, *ShipRow.DataTable->FindRow<FEnemyShips>(ShipRow.RowName, ""), LeadShip);
 	}
+	float RandWaitTime = FMath::RandRange(1.f, 5.f);
+	GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
 }
 
 // Called every frame
 void AEnemyManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (!bAttackingShip)
-	{
-		float RandNum = FMath::RandRange(0.f, 1.f);
-		if (RandNum > .8)
-		{
-			LeadShips[0]->BeginAttackRun();
-			bAttackingShip = true;
-		}
-	}
 }
 
 float AEnemyManager::GetFlyUnderDistance()
 {
 	return FlyUnderDistance;
+}
+
+void AEnemyManager::ShipAttack()
+{
+	if (LeadShips.Num() == 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No Ships"));
+		return;
+	}
+	int RandNum = FMath::RandRange(0, LeadShips.Num()-1);
+	LeadShips.Add(AttackingShip);
+	AttackingShip = LeadShips[RandNum];
+	AttackingShip->BeginAttackRun();
+	LeadShips.RemoveAt(RandNum);
+	UE_LOG(LogTemp, Warning, TEXT("Ship name %s"), *LeadShips[LeadShips.Num()-1]->GetName());
 }
 

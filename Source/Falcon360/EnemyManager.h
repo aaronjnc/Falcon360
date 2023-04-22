@@ -30,6 +30,9 @@ public:
 
 	float GetFlyUnderDistance();
 
+	UFUNCTION()
+	void ShipAttack();
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Info")
@@ -40,6 +43,9 @@ private:
 
 	UPROPERTY()
 	TArray<ULeadShip*> LeadShips;
+
+	UPROPERTY()
+	ULeadShip* AttackingShip;
 
 	UPROPERTY()
 	TArray<AFlightPoint*> AvailableFlightPoints;
@@ -55,5 +61,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Flight Info")
 	float FlyUnderDistance;
+
+	FTimerHandle AttackTimerHandle;
 
 };
