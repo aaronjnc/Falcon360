@@ -50,6 +50,11 @@ private:
 	AFlightPoint* NextPoint;
 
 	UPROPERTY()
+	FVector NextPosition;
+
+	UPROPERTY()
 	bool bAttacking;
+
+	FVector FlyUnderLocation;
 		
 };

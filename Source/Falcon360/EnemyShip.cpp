@@ -78,7 +78,6 @@ void AEnemyShip::Tick(float DeltaTime)
 	if (bAttacking && (NextPointPosition - GetActorLocation()).Size() < DivertAttack)
 	{
 		bShooting = false;
-		bAttacking = false;
 		GetNextPoint();
 	}
 

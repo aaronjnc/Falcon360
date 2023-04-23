@@ -21,6 +21,7 @@ void AEnemyManager::BeginPlay()
 	Super::BeginPlay();
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFlightPoint::StaticClass(), FoundActors);
+	PlayerCharacter = Cast<AVizParentPawn>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	for (AActor* Actor : FoundActors)
 	{
 		AvailableFlightPoints.Add(Cast<AFlightPoint>(Actor));
@@ -54,16 +55,31 @@ float AEnemyManager::GetFlyUnderDistance()
 
 void AEnemyManager::ShipAttack()
 {
-	if (LeadShips.Num() == 0)
+	
+}
+
+void AEnemyManager::StopAttack(ULeadShip* StopAttacking)
+{
+	AttackingShips.Remove(StopAttacking);
+	LeadShips.Add(StopAttacking);
+}
+
+bool AEnemyManager::ShouldAttack(ULeadShip* AttackShip)
+{
+	FVector NewShipLoc = AttackShip->GetOwner()->GetActorLocation();
+	FRotator AttackShipRot = (NewShipLoc- PlayerCharacter->GetActorLocation()).Rotation();
+	bool CanAttack = true;
+	for (ULeadShip* AttackingShip : AttackingShips)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No Ships"));
-		return;
+		FVector AttackShipLoc = AttackingShip->GetOwner()->GetActorLocation();
+		FRotator AttackerRot = (AttackShipLoc - PlayerCharacter->GetActorLocation()).Rotation();
+		float AngleDiff = FMath::Abs(AttackShipRot.Yaw - AttackerRot.Yaw);
+		float Distance = FMath::Abs((AttackShipLoc - NewShipLoc).Length());
+		if (Distance / AngleDiff < AngleDistanceMultiplier)
+		{
+			return true;
+		}
 	}
-	int RandNum = FMath::RandRange(0, LeadShips.Num()-1);
-	LeadShips.Add(AttackingShip);
-	AttackingShip = LeadShips[RandNum];
-	AttackingShip->BeginAttackRun();
-	LeadShips.RemoveAt(RandNum);
-	UE_LOG(LogTemp, Warning, TEXT("Ship name %s"), *LeadShips[LeadShips.Num()-1]->GetName());
+	return CanAttack;
 }
 
