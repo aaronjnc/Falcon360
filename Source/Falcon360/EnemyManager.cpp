@@ -55,7 +55,7 @@ float AEnemyManager::GetFlyUnderDistance()
 
 void AEnemyManager::ShipAttack()
 {
-	
+	LeadShips[0]->BeginAttackRun();
 }
 
 void AEnemyManager::StopAttack(ULeadShip* StopAttacking)
