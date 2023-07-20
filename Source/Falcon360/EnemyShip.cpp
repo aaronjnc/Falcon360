@@ -141,7 +141,8 @@ bool AEnemyShip::CanGoToNextPoint()
 
 bool AEnemyShip::CanDivertAttack()
 {
-	return  (NextPointPosition - GetActorLocation()).Size() < DivertAttackDistance;
+	bShooting = !((NextPointPosition - GetActorLocation()).Size() < DivertAttackDistance);
+	return  !bShooting;
 }
 
 void AEnemyShip::ContinueShooting()
@@ -150,5 +151,6 @@ void AEnemyShip::ContinueShooting()
 	{
 		TurretComponent->Shoot(true);
 		TurretComponent->Shoot(false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, FireRate, false);
 	}
 }
