@@ -32,6 +32,10 @@ public:
 
 	void SetStartingPoint(AFlightPoint* FirstPoint);
 
+	void DestroyShip();
+
+	APawn* GetPlayer();
+
 private:
 
 	UPROPERTY()

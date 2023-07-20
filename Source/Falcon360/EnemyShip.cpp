@@ -76,7 +76,7 @@ void AEnemyShip::BeginAttack()
 	bAttacking = true;
 	UBlackboardComponent* BlackboardComponent = UAIBlueprintHelperLibrary::GetBlackboard(this);
 	BlackboardComponent->SetValueAsBool(FName("bAttacking"), true);
-	SetDestination(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+	SetDestination(LeadShip->GetPlayer()->GetActorLocation());
 }
 
 float AEnemyShip::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator,
@@ -88,6 +88,7 @@ float AEnemyShip::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 	Health = FMath::Clamp(Health - Remaining, 0, MaxHealth);
 	if (Health <= 0)
 	{
+		LeadShip->DestroyShip();
 		Destroy();
 	}
 	return Health;

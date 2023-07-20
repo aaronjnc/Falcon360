@@ -40,6 +40,12 @@ public:
 	UFUNCTION()
 	bool ShouldAttack(ULeadShip* AttackShip);
 
+	UFUNCTION()
+	void DestroyLeadShip(ULeadShip* Destroyed);
+
+	UFUNCTION()
+	APawn* GetPlayer();
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Info")

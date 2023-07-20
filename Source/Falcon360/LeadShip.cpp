@@ -33,15 +33,6 @@ void ULeadShip::BeginPlay()
 void ULeadShip::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	/*if (bAttacking)
-	{
-		bool bAttack = EnemyManager->ShouldAttack(this);
-		if (bAttack)
-		{
-			BeginAttackRun();
-		}
-	}*/
 }
 
 void ULeadShip::BeginAttackRun()
@@ -58,8 +49,7 @@ FVector ULeadShip::GetNextPoint()
 	}
 	if (bAttacking)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Fly Under, Send Next Ship %s"), *FlyUnderLocation.ToString());
-		EnemyManager->ShipAttack();
+		EnemyManager->StopAttack(this);
 		NextPosition = FlyUnderLocation;
 		return FlyUnderLocation;
 	}
@@ -71,5 +61,15 @@ FVector ULeadShip::GetNextPoint()
 void ULeadShip::SetStartingPoint(AFlightPoint* FirstPoint)
 {
 	NextPoint = FirstPoint;
+}
+
+void ULeadShip::DestroyShip()
+{
+	EnemyManager->DestroyLeadShip(this);
+}
+
+APawn* ULeadShip::GetPlayer()
+{
+	return EnemyManager->GetPlayer();
 }
 

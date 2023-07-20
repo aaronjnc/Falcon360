@@ -55,13 +55,18 @@ float AEnemyManager::GetFlyUnderDistance()
 
 void AEnemyManager::ShipAttack()
 {
-	LeadShips[0]->BeginAttackRun();
+	ULeadShip* AttackingShip = LeadShips[0];
+	LeadShips.RemoveAt(0);
+	AttackingShips.Add(AttackingShip);
+	AttackingShip->BeginAttackRun();
 }
 
 void AEnemyManager::StopAttack(ULeadShip* StopAttacking)
 {
 	AttackingShips.Remove(StopAttacking);
 	LeadShips.Add(StopAttacking);
+	const float RandWaitTime = FMath::RandRange(1.f, 5.f);
+	GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
 }
 
 bool AEnemyManager::ShouldAttack(ULeadShip* AttackShip)
@@ -81,5 +86,24 @@ bool AEnemyManager::ShouldAttack(ULeadShip* AttackShip)
 		}
 	}
 	return CanAttack;
+}
+
+void AEnemyManager::DestroyLeadShip(ULeadShip* Destroyed)
+{
+	if (AttackingShips.Contains(Destroyed))
+	{
+		AttackingShips.Remove(Destroyed);
+		const float RandWaitTime = FMath::RandRange(1.f, 5.f);
+		GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
+	}
+	else
+	{
+		LeadShips.Remove(Destroyed);
+	}
+}
+
+APawn* AEnemyManager::GetPlayer()
+{
+	return PlayerCharacter;
 }
 
