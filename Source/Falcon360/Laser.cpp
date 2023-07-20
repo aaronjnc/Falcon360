@@ -27,8 +27,6 @@ ALaser::ALaser()
 	ProjectileMovementComponent->bRotationFollowsVelocity = true;
 	ProjectileMovementComponent->bShouldBounce = false;
 	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
-
-
 }
 
 // Called when the game starts or when spawned

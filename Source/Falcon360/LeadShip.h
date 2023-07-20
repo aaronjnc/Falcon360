@@ -32,6 +32,10 @@ public:
 
 	void SetStartingPoint(AFlightPoint* FirstPoint);
 
+	void DestroyShip();
+
+	APawn* GetPlayer();
+
 private:
 
 	UPROPERTY()
@@ -50,6 +54,11 @@ private:
 	AFlightPoint* NextPoint;
 
 	UPROPERTY()
+	FVector NextPosition;
+
+	UPROPERTY()
 	bool bAttacking;
+
+	FVector FlyUnderLocation;
 		
 };

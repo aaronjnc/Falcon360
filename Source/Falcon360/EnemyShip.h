@@ -27,18 +27,73 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	void SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip);
 	
 	void SetDestination(FVector Destination);
 
+	UFUNCTION(BlueprintCallable)
 	void GetNextPoint();
 
 	void BeginAttack();
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
+protected:
+
+	UFUNCTION(BlueprintCallable)
+	void RotateTowardsDestination();
+
+	UFUNCTION(BlueprintCallable)
+	void SetForwardVelocity();
+
+	UFUNCTION(BlueprintCallable)
+	void AimTurret();
+
+	UFUNCTION(BlueprintCallable)
+	void StartShooting();
+
+	UFUNCTION(BlueprintCallable)
+	bool CanShoot();
+
+	UFUNCTION(BlueprintCallable)
+	bool IsAttacking();
+
+	UFUNCTION(BlueprintCallable)
+	bool CanGoToNextPoint();
+
+	UFUNCTION(BlueprintCallable)
+	bool CanDivertAttack();
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	UFloatingPawnMovement* MovementComponent;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	USceneComponent* LeftBlaster;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	USceneComponent* RightBlaster;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
+	UTurret* TurretComponent;
+	
+	UPROPERTY(BlueprintReadOnly)
+	FVector NextPointPosition;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Overall")
+	float RotateSpeed;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Overall")
+	float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Overall")
+	float DivertAttackDistance;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool bAttacking;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool bShooting;
 
 private:
 
@@ -46,19 +101,7 @@ private:
 	void ContinueShooting();
 
 	UPROPERTY(EditAnywhere, Category = "Components")
-	UFloatingPawnMovement* MovementComponent;
-
-	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent* StaticMeshComponent;
-
-	UPROPERTY(EditAnywhere, Category = "Components")
-	UTurret* TurretComponent;
-
-	UPROPERTY(EditAnywhere, Category = "Components")
-	USceneComponent* LeftBlaster;
-
-	UPROPERTY(EditAnywhere, Category = "Components")
-	USceneComponent* RightBlaster;
 
 	UPROPERTY()
 	float MaxHealth;
@@ -76,28 +119,10 @@ private:
 	float FireRate;
 
 	UPROPERTY()
-	FVector NextPointPosition;
-
-	UPROPERTY()
 	bool bLeadShip;
-
-	UPROPERTY(EditAnywhere, Category = "Overall")
-	float Speed;
-
-	UPROPERTY(EditAnywhere, Category = "Overall")
-	float RotateSpeed;
-
-	UPROPERTY(EditAnywhere, Category = "Overall")
-	float DivertAttack;
 
 	UPROPERTY()
 	ULeadShip* LeadShip;
-
-	UPROPERTY()
-	bool bAttacking;
-
-	UPROPERTY()
-	bool bShooting;
 
 	UPROPERTY()
 	float AngleDiff;

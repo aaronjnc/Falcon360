@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "VizParentPawn.h"
 #include "GameFramework/Actor.h"
 #include "EnemyManager.generated.h"
 
@@ -30,6 +31,21 @@ public:
 
 	float GetFlyUnderDistance();
 
+	UFUNCTION()
+	void ShipAttack();
+
+	UFUNCTION()
+	void StopAttack(ULeadShip* StopAttacking);
+
+	UFUNCTION()
+	bool ShouldAttack(ULeadShip* AttackShip);
+
+	UFUNCTION()
+	void DestroyLeadShip(ULeadShip* Destroyed);
+
+	UFUNCTION()
+	APawn* GetPlayer();
+
 private:
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Info")
@@ -40,6 +56,9 @@ private:
 
 	UPROPERTY()
 	TArray<ULeadShip*> LeadShips;
+
+	UPROPERTY()
+	TArray<ULeadShip*> AttackingShips;
 
 	UPROPERTY()
 	TArray<AFlightPoint*> AvailableFlightPoints;
@@ -53,7 +72,18 @@ private:
 	UPROPERTY()
 	bool bAttackingShip;
 
-	UPROPERTY(EditAnywhere, Category = "Flight Info")
+	UPROPERTY(EditAnywhere, Category = "Attack Info")
 	float FlyUnderDistance;
+
+	FTimerHandle AttackTimerHandle;
+
+	UPROPERTY()
+	AVizParentPawn* PlayerCharacter;
+
+	UPROPERTY(EditAnywhere, Category = "Attack Info")
+	float AngleDistanceMultiplier;
+
+	UPROPERTY()
+	int WaveNumber;
 
 };

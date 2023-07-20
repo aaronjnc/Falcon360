@@ -10,6 +10,8 @@
 #include "Turret.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 // Sets default values
 AEnemyShip::AEnemyShip()
@@ -38,50 +40,6 @@ AEnemyShip::AEnemyShip()
 void AEnemyShip::BeginPlay()
 {
 	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void AEnemyShip::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	FRotator GoalRotation = (NextPointPosition - GetActorLocation()).Rotation();
-	FRotator NewRotation =FMath::RInterpConstantTo(GetActorRotation(), GoalRotation, DeltaTime, RotateSpeed);
-	SetActorRotation(NewRotation);
-	MovementComponent->Velocity = GetActorForwardVector() * Speed;
-	if (bAttacking)
-	{
-		AngleDiff = FMath::Clamp(FVector::DotProduct(GoalRotation.Euler(), NewRotation.Euler()),0, 360);
-	}
-	if (bAttacking && (AngleDiff < 3 || AngleDiff > 357))
-	{
-		const FRotator LeftRotation = (NextPointPosition - LeftBlaster->GetComponentLocation()).Rotation();
-		LeftBlaster->SetWorldRotation(LeftRotation);
-		const FRotator RightRotation = (NextPointPosition - RightBlaster->GetComponentLocation()).Rotation();
-		RightBlaster->SetWorldRotation(RightRotation);
-		if (!bShooting)
-		{
-			bShooting = true;
-			TurretComponent->Shoot(false);
-			TurretComponent->Shoot(true);
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, FireRate, false);
-		}
-	}
-	else if (bShooting)
-	{
-		bShooting = false;
-	}
-	if ((NextPointPosition - GetActorLocation()).Size() < 100)
-	{
-		GetNextPoint();
-	}
-	if (bAttacking && (NextPointPosition - GetActorLocation()).Size() < DivertAttack)
-	{
-		bShooting = false;
-		bAttacking = false;
-		GetNextPoint();
-	}
-
 }
 
 void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* NewLeadShip)
@@ -116,7 +74,9 @@ void AEnemyShip::GetNextPoint()
 void AEnemyShip::BeginAttack()
 {
 	bAttacking = true;
-	SetDestination(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+	UBlackboardComponent* BlackboardComponent = UAIBlueprintHelperLibrary::GetBlackboard(this);
+	BlackboardComponent->SetValueAsBool(FName("bAttacking"), true);
+	SetDestination(LeadShip->GetPlayer()->GetActorLocation());
 }
 
 float AEnemyShip::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator,
@@ -128,9 +88,60 @@ float AEnemyShip::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent
 	Health = FMath::Clamp(Health - Remaining, 0, MaxHealth);
 	if (Health <= 0)
 	{
+		LeadShip->DestroyShip();
 		Destroy();
 	}
 	return Health;
+}
+
+void AEnemyShip::RotateTowardsDestination()
+{
+	const FRotator GoalRotation = (NextPointPosition - GetActorLocation()).Rotation();
+	const FRotator NewRotation = FMath::RInterpConstantTo(GetActorRotation(), GoalRotation, GetWorld()->GetDeltaSeconds(), RotateSpeed);
+	SetActorRotation(NewRotation);
+}
+
+void AEnemyShip::SetForwardVelocity()
+{
+	MovementComponent->Velocity = GetActorForwardVector() * Speed;
+}
+
+void AEnemyShip::AimTurret()
+{
+	const FRotator LeftRotation = (NextPointPosition - LeftBlaster->GetComponentLocation()).Rotation();
+	LeftBlaster->SetWorldRotation(LeftRotation);
+	const FRotator RightRotation = (NextPointPosition - RightBlaster->GetComponentLocation()).Rotation();
+	RightBlaster->SetWorldRotation(RightRotation);
+}
+
+void AEnemyShip::StartShooting()
+{
+	bShooting = true;
+	TurretComponent->Shoot(false);
+	TurretComponent->Shoot(true);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, FireRate, false);
+}
+
+bool AEnemyShip::CanShoot()
+{
+	const FRotator GoalRotation = (NextPointPosition - GetActorLocation()).Rotation();
+	const float Difference = FMath::Clamp(FVector::DotProduct(GoalRotation.Euler(), GetActorRotation().Euler()), 0, 360);
+	return Difference < 3 || Difference > 357;
+}
+
+bool AEnemyShip::IsAttacking()
+{
+	return bAttacking;
+}
+
+bool AEnemyShip::CanGoToNextPoint()
+{
+	return (NextPointPosition - GetActorLocation()).Size() < 100;
+}
+
+bool AEnemyShip::CanDivertAttack()
+{
+	return  (NextPointPosition - GetActorLocation()).Size() < DivertAttackDistance;
 }
 
 void AEnemyShip::ContinueShooting()

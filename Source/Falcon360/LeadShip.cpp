@@ -25,7 +25,7 @@ void ULeadShip::BeginPlay()
 
 	EnemyManager = Cast<AEnemyManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AEnemyManager::StaticClass()));
 	OwningShip = Cast<AEnemyShip>(GetOwner());
-	
+	FlyUnderLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation() + FVector(0, 0, EnemyManager->GetFlyUnderDistance());
 }
 
 
@@ -33,8 +33,6 @@ void ULeadShip::BeginPlay()
 void ULeadShip::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 
 void ULeadShip::BeginAttackRun()
@@ -45,18 +43,33 @@ void ULeadShip::BeginAttackRun()
 
 FVector ULeadShip::GetNextPoint()
 {
+	if (NextPosition == FlyUnderLocation)
+	{
+		bAttacking = false;
+	}
 	if (bAttacking)
 	{
-		float FlyUnderDistance = EnemyManager->GetFlyUnderDistance();
-		bAttacking = false;
-		return GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation() + FVector(0, 0, FlyUnderDistance);
+		EnemyManager->StopAttack(this);
+		NextPosition = FlyUnderLocation;
+		return FlyUnderLocation;
 	}
 	NextPoint = NextPoint->GetNextPoint();
+	NextPosition = NextPoint->GetActorLocation();
 	return NextPoint->GetActorLocation();
 }
 
 void ULeadShip::SetStartingPoint(AFlightPoint* FirstPoint)
 {
 	NextPoint = FirstPoint;
+}
+
+void ULeadShip::DestroyShip()
+{
+	EnemyManager->DestroyLeadShip(this);
+}
+
+APawn* ULeadShip::GetPlayer()
+{
+	return EnemyManager->GetPlayer();
 }
 

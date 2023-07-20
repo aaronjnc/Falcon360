@@ -21,6 +21,7 @@ void AEnemyManager::BeginPlay()
 	Super::BeginPlay();
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFlightPoint::StaticClass(), FoundActors);
+	PlayerCharacter = Cast<AVizParentPawn>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	for (AActor* Actor : FoundActors)
 	{
 		AvailableFlightPoints.Add(Cast<AFlightPoint>(Actor));
@@ -37,25 +38,72 @@ void AEnemyManager::BeginPlay()
 		LeadShip->SetStartingPoint(Point);
 		EnemyShip->SetShipType(true, *ShipRow.DataTable->FindRow<FEnemyShips>(ShipRow.RowName, ""), LeadShip);
 	}
+	float RandWaitTime = FMath::RandRange(1.f, 5.f);
+	GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
 }
 
 // Called every frame
 void AEnemyManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (!bAttackingShip)
-	{
-		float RandNum = FMath::RandRange(0.f, 1.f);
-		if (RandNum > .8)
-		{
-			LeadShips[0]->BeginAttackRun();
-			bAttackingShip = true;
-		}
-	}
 }
 
 float AEnemyManager::GetFlyUnderDistance()
 {
 	return FlyUnderDistance;
+}
+
+void AEnemyManager::ShipAttack()
+{
+	ULeadShip* AttackingShip = LeadShips[0];
+	LeadShips.RemoveAt(0);
+	AttackingShips.Add(AttackingShip);
+	AttackingShip->BeginAttackRun();
+}
+
+void AEnemyManager::StopAttack(ULeadShip* StopAttacking)
+{
+	AttackingShips.Remove(StopAttacking);
+	LeadShips.Add(StopAttacking);
+	const float RandWaitTime = FMath::RandRange(1.f, 5.f);
+	GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
+}
+
+bool AEnemyManager::ShouldAttack(ULeadShip* AttackShip)
+{
+	FVector NewShipLoc = AttackShip->GetOwner()->GetActorLocation();
+	FRotator AttackShipRot = (NewShipLoc- PlayerCharacter->GetActorLocation()).Rotation();
+	bool CanAttack = true;
+	for (ULeadShip* AttackingShip : AttackingShips)
+	{
+		FVector AttackShipLoc = AttackingShip->GetOwner()->GetActorLocation();
+		FRotator AttackerRot = (AttackShipLoc - PlayerCharacter->GetActorLocation()).Rotation();
+		float AngleDiff = FMath::Abs(AttackShipRot.Yaw - AttackerRot.Yaw);
+		float Distance = FMath::Abs((AttackShipLoc - NewShipLoc).Length());
+		if (Distance / AngleDiff < AngleDistanceMultiplier)
+		{
+			return true;
+		}
+	}
+	return CanAttack;
+}
+
+void AEnemyManager::DestroyLeadShip(ULeadShip* Destroyed)
+{
+	if (AttackingShips.Contains(Destroyed))
+	{
+		AttackingShips.Remove(Destroyed);
+		const float RandWaitTime = FMath::RandRange(1.f, 5.f);
+		GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
+	}
+	else
+	{
+		LeadShips.Remove(Destroyed);
+	}
+}
+
+APawn* AEnemyManager::GetPlayer()
+{
+	return PlayerCharacter;
 }
 
