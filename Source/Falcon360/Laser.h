@@ -25,8 +25,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	void SetLaserType(FName LaserName);
 
@@ -57,5 +55,5 @@ private:
 	AFalcon360GameModeBase* GameModeBase;
 
 	FTimerHandle LifetimeTimerHandle;
-
+	
 };

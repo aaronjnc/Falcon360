@@ -27,13 +27,6 @@ AEnemyShip::AEnemyShip()
 	StaticMeshComponent->SetupAttachment(RootComponent);
 
 	TurretComponent = CreateDefaultSubobject<UTurret>(TEXT("Turret Component"));
-
-	LeftBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Left Blaster"));
-	LeftBlaster->SetupAttachment(StaticMeshComponent);
-	
-	RightBlaster = CreateDefaultSubobject<USceneComponent>(TEXT("Right Blaster"));
-	RightBlaster->SetupAttachment(StaticMeshComponent);
-
 }
 
 // Called when the game starts or when spawned
@@ -52,9 +45,19 @@ void AEnemyShip::SetShipType(bool IsLeadShip, FEnemyShips ShipInfo, ULeadShip* N
 	Shield = MaxShield;
 	bLeadShip = IsLeadShip;
 	FireRate = ShipInfo.BlasterType.DataTable->FindRow<FBlasters>(ShipInfo.BlasterType.RowName, "")->FireRate;
-	TurretComponent->SetTurretInfo(ShipInfo.BlasterType, LeftBlaster, RightBlaster);
-	TimerDelegate.BindUFunction(this, "ContinueShooting");
 	SetActorScale3D(FVector(ShipInfo.Scale, ShipInfo.Scale, ShipInfo.Scale));
+	StaticMeshComponent->SetRelativeLocation(ShipInfo.LocalPosition);
+	UE_LOG(LogTemp, Warning, TEXT("Blasters: %d"), ShipInfo.LaserPositions.Num());
+	for (FVector BlasterPosition : ShipInfo.LaserPositions)
+	{
+		USceneComponent* Blaster = Cast<USceneComponent>(AddComponentByClass(USceneComponent::StaticClass(), false, FTransform(), false));
+		Blaster->AttachToComponent(StaticMeshComponent, FAttachmentTransformRules::KeepRelativeTransform);
+		Blaster->SetRelativeLocation(BlasterPosition);
+		Blaster->SetRelativeRotation(FRotator(0, 0, 0));
+		Blasters.Add(Blaster);
+	}
+	TurretComponent->SetTurretInfo(ShipInfo.BlasterType, Blasters, Blasters);
+	TimerDelegate.BindUFunction(this, "ContinueShooting");
 	GetNextPoint();
 }
 
@@ -108,17 +111,17 @@ void AEnemyShip::SetForwardVelocity()
 
 void AEnemyShip::AimTurret()
 {
-	const FRotator LeftRotation = (NextPointPosition - LeftBlaster->GetComponentLocation()).Rotation();
-	LeftBlaster->SetWorldRotation(LeftRotation);
-	const FRotator RightRotation = (NextPointPosition - RightBlaster->GetComponentLocation()).Rotation();
-	RightBlaster->SetWorldRotation(RightRotation);
+	for (USceneComponent* Blaster : Blasters)
+	{
+		const FRotator BlasterRotation = (NextPointPosition - Blaster->GetComponentLocation()).Rotation();
+		Blaster->SetWorldRotation(BlasterRotation);
+	}
 }
 
 void AEnemyShip::StartShooting()
 {
 	bShooting = true;
 	TurretComponent->Shoot(false);
-	TurretComponent->Shoot(true);
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, FireRate, false);
 }
 
@@ -149,8 +152,8 @@ void AEnemyShip::ContinueShooting()
 {
 	if (bShooting)
 	{
-		TurretComponent->Shoot(true);
 		TurretComponent->Shoot(false);
+		AimTurret();
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, FireRate, false);
 	}
 }

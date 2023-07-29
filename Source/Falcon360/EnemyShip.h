@@ -67,12 +67,9 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
 	UFloatingPawnMovement* MovementComponent;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
-	USceneComponent* LeftBlaster;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
-	USceneComponent* RightBlaster;
+	UPROPERTY()
+	TArray<USceneComponent*> Blasters;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components")
 	UTurret* TurretComponent;

@@ -38,7 +38,7 @@ struct FEnemyShips : public FTableRowBase
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	class UStaticMesh* StaticMesh;
+	UStaticMesh* StaticMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Health;
@@ -51,6 +51,12 @@ struct FEnemyShips : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Scale;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FVector LocalPosition;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FVector> LaserPositions;
 };
 
 /**

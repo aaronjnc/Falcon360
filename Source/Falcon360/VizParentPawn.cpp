@@ -45,7 +45,7 @@ void AVizParentPawn::BeginPlay()
 		}
 	}
 	FireRate = BlasterInfo.DataTable->FindRow<FBlasters>(BlasterInfo.RowName, "")->FireRate;
-	TurretComponent->SetTurretInfo(BlasterInfo, LeftBlaster, RightBlaster);
+	TurretComponent->SetTurretInfo(BlasterInfo, {LeftBlaster}, { RightBlaster });
 	Health = MaxHealth;
 	Shield = MaxShield;
 	BlasterInfos.Add(FBlasterInfo());

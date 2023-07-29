@@ -7,8 +7,23 @@
   <component name="ChangeListManager">
     <list default="true" id="4f7d98a9-150e-4d60-b802-18b9735797e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Falcon360/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Blasters.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Ships.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/DataTables/DT_Ships.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_EnemyManager.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_EnemyManager.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_TieFighter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/TestLevel.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/EnemyShip.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Laser.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Laser.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/LeadShip.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/LeadShip.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/LeadShip.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/LeadShip.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/StructClass.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Turret.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Turret.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/Turret.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/Turret.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Falcon360/VizParentPawn.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +195,7 @@
       <workItem from="1689651256806" duration="7626000" />
       <workItem from="1689822461115" duration="1979000" />
       <workItem from="1689824994309" duration="1034000" />
+      <workItem from="1690602782043" duration="5594000" />
     </task>
     <servers />
   </component>
