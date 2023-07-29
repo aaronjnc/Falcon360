@@ -13,7 +13,7 @@ struct FTurretInfo
 {
 	GENERATED_BODY()
 
-	USceneComponent* SceneComponent;
+	TArray<USceneComponent*> BlasterComponents;
 	
 };
 
@@ -35,7 +35,7 @@ protected:
 public:
 
 	UFUNCTION()
-	void SetTurretInfo(FDataTableRowHandle RowHandle, USceneComponent* LeftTurret, USceneComponent* RightTurret);
+	void SetTurretInfo(FDataTableRowHandle RowHandle, TArray<USceneComponent*> LeftTurret, TArray<USceneComponent*> RightTurret);
 	
 	// Called every frame
 	UFUNCTION()

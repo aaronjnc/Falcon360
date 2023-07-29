@@ -27,12 +27,12 @@ void UTurret::BeginPlay()
 	TurretInfos.Add(FTurretInfo());
 }
 
-void UTurret::SetTurretInfo(FDataTableRowHandle RowHandle, USceneComponent* LeftTurret, USceneComponent* RightTurret)
+void UTurret::SetTurretInfo(FDataTableRowHandle RowHandle, TArray<USceneComponent*> LeftTurret, TArray<USceneComponent*> RightTurret)
 {
 	TableRow = RowHandle;
 	DelayTime = TableRow.DataTable->FindRow<FBlasters>(TableRow.RowName, "")->FireRate;
-	TurretInfos[0].SceneComponent = LeftTurret;
-	TurretInfos[1].SceneComponent = RightTurret;
+	TurretInfos[0].BlasterComponents = LeftTurret;
+	TurretInfos[1].BlasterComponents = RightTurret;
 }
 
 void UTurret::Shoot(bool bLeft)
@@ -48,14 +48,17 @@ void UTurret::Shoot(bool bLeft)
 void UTurret::Fire(int index)
 {
 	FActorSpawnParameters Params;
-	ALaser* Laser = GetWorld()->SpawnActor<ALaser>(LaserSubclass, TurretInfos[index].SceneComponent->GetComponentLocation(), TurretInfos[index].SceneComponent->GetComponentRotation(), Params);
-	UFloatingPawnMovement* MovementComponent = Cast<UFloatingPawnMovement>(GetOwner()->GetComponentByClass(UFloatingPawnMovement::StaticClass()));
-	if (MovementComponent)
+	for (USceneComponent* Blaster : TurretInfos[index].BlasterComponents)
 	{
-		Laser->SetLaserType(TableRow.RowName, MovementComponent->Velocity);
-	}
-	else
-	{
-		Laser->SetLaserType(TableRow.RowName);
+		ALaser* Laser = GetWorld()->SpawnActor<ALaser>(LaserSubclass, Blaster->GetComponentLocation(), Blaster->GetComponentRotation(), Params);
+		UFloatingPawnMovement* MovementComponent = Cast<UFloatingPawnMovement>(GetOwner()->GetComponentByClass(UFloatingPawnMovement::StaticClass()));
+		if (MovementComponent)
+		{
+			Laser->SetLaserType(TableRow.RowName, MovementComponent->Velocity);
+		}
+		else
+		{
+			Laser->SetLaserType(TableRow.RowName);
+		}
 	}
 }

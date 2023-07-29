@@ -26,6 +26,11 @@ void AEnemyManager::BeginPlay()
 	{
 		AvailableFlightPoints.Add(Cast<AFlightPoint>(Actor));
 	}
+	SpawnWave();
+}
+
+void AEnemyManager::SpawnWave()
+{
 	for (int i = 0; i < LeadShipCount; i++)
 	{
 		AFlightPoint* Point = AvailableFlightPoints[FMath::RandRange(0, AvailableFlightPoints.Num()-1)];
@@ -93,12 +98,19 @@ void AEnemyManager::DestroyLeadShip(ULeadShip* Destroyed)
 	if (AttackingShips.Contains(Destroyed))
 	{
 		AttackingShips.Remove(Destroyed);
-		const float RandWaitTime = FMath::RandRange(1.f, 5.f);
-		GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
+		if (LeadShips.Num() > 0)
+		{
+			const float RandWaitTime = FMath::RandRange(1.f, 5.f);
+			GetWorld()->GetTimerManager().SetTimer(AttackTimerHandle, this, &AEnemyManager::ShipAttack, RandWaitTime, false);
+		}
 	}
 	else
 	{
 		LeadShips.Remove(Destroyed);
+	}
+	if (LeadShips.Num() == 0)
+	{
+		SpawnWave();
 	}
 }
 

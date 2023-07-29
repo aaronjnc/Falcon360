@@ -28,13 +28,6 @@ void ULeadShip::BeginPlay()
 	FlyUnderLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation() + FVector(0, 0, EnemyManager->GetFlyUnderDistance());
 }
 
-
-// Called every frame
-void ULeadShip::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-}
-
 void ULeadShip::BeginAttackRun()
 {
 	bAttacking = true;

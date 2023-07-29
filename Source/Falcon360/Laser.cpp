@@ -36,13 +36,6 @@ void ALaser::BeginPlay()
 	GameModeBase = Cast<AFalcon360GameModeBase>(GetWorld()->GetAuthGameMode());
 }
 
-// Called every frame
-void ALaser::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
 void ALaser::SetLaserType(FName LaserName)
 {
 	LaserComponent->SetAsset(GameModeBase->GetNiagaraSystem(LaserName));
