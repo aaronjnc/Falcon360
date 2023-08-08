@@ -52,6 +52,22 @@ public:
 
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
+	void NewWave(int Wave);
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateWave(int Wave);
+
+protected:
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateHealthAndShield(float NewHealth, float NewShield);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void EndScreen();
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	float RotationModifier;
+
 private:
 
 	UFUNCTION()

@@ -82,16 +82,28 @@ float AVizParentPawn::TakeDamage(float DamageAmount, FDamageEvent const& DamageE
 	Shield = FMath::Clamp(Shield - DamageAmount, 0, MaxShield);
 	float FinalRemaining = FMath::Clamp(Remaining - Health, 0, Remaining);
 	Health = FMath::Clamp(Health - Remaining, 0, MaxHealth);
+	UE_LOG(LogTemp, Warning, TEXT("Health: %f Shield %f"), Health, Shield);
 	if (Health <= 0)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Dead"));
+		PlayerController->Pause();
+		EndScreen();
 	}
+	UpdateHealthAndShield(Health / MaxHealth, Shield / MaxShield);
 	return Health;
+}
+
+void AVizParentPawn::NewWave(int Wave)
+{
+	Shield = MaxShield;
+	UpdateHealthAndShield(Health / MaxHealth, Shield / MaxShield);
+	UpdateWave(Wave);
 }
 
 void AVizParentPawn::RotatePlayer(const FInputActionValue& Value)
 {
-	AddControllerYawInput(Value.Get<float>());
+	float Direction = Value.Get<float>() * RotationModifier;
+	UE_LOG(LogTemp, Warning, TEXT("Direction: %f"), Direction);
+	AddControllerYawInput(Direction);
 }
 
 void AVizParentPawn::ShootLeft()
@@ -127,6 +139,3 @@ void AVizParentPawn::ContinueShooting(int i)
 		(this->*BlasterInfos[i].PtrFunction)();
 	}
 }
-
-
-

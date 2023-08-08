@@ -21,16 +21,25 @@ void AEnemyManager::BeginPlay()
 	Super::BeginPlay();
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFlightPoint::StaticClass(), FoundActors);
-	PlayerCharacter = Cast<AVizParentPawn>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	for (AActor* Actor : FoundActors)
 	{
 		AvailableFlightPoints.Add(Cast<AFlightPoint>(Actor));
+	}
+	PlayerCharacter = Cast<AVizParentPawn>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	if (PlayerCharacter)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Player retrieved"));
 	}
 	SpawnWave();
 }
 
 void AEnemyManager::SpawnWave()
 {
+	WaveNumber++;
+	if (PlayerCharacter)
+	{
+		PlayerCharacter->NewWave(WaveNumber);
+	}
 	for (int i = 0; i < LeadShipCount; i++)
 	{
 		AFlightPoint* Point = AvailableFlightPoints[FMath::RandRange(0, AvailableFlightPoints.Num()-1)];
@@ -116,6 +125,10 @@ void AEnemyManager::DestroyLeadShip(ULeadShip* Destroyed)
 
 APawn* AEnemyManager::GetPlayer()
 {
+	if (!PlayerCharacter)
+	{
+		PlayerCharacter = Cast<AVizParentPawn>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	}
 	return PlayerCharacter;
 }
 
